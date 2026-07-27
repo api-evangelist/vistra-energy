@@ -1,0 +1,381 @@
+aid: vistra-energy
+name: Vistra Corp
+review:
+  question: >-
+    Does Vistra Corp publish a public, documented API — consumer energy data
+    (Green Button / ESPI or equivalent) or open market/grid data — that a
+    developer can reach without a Vistra customer account or a commercial deal?
+  answer: false
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  sector: Energy & Utilities
+  tier: utility-retailer
+  homeMarket: United States
+
+energyDataPosture:
+  homeMarket: United States
+  organizationRole: >-
+    Competitive merchant power generator (approximately 41,000-44,000 MW across
+    natural gas, nuclear, coal, solar and battery storage) and retail electricity
+    provider (REP) / competitive retail supplier serving nearly 5 million
+    customers in 16 states and the District of Columbia. Vistra is NOT a
+    regulated wires company. It owns no transmission or distribution network and
+    no meters, which is the structural reason the consumer-data API in its home
+    Texas market does not belong to it.
+
+  mandateRegime: green-button-voluntary
+  mandateRegimeVerbatim: >-
+    No consumer energy data right applies to Vistra Corp. The United States has
+    no federal energy equivalent of the Australian Consumer Data Right and no
+    Ontario-style Green Button regulation binding this company. Green Button is
+    an NAESB/NIST-derived open standard (Energy Services Provider Interface,
+    ESPI) that utilities and retailers adopt voluntarily. The only obligation-
+    adjacent artifact found naming a Vistra entity is the US Department of
+    Energy's list headed "Utilities Committed to Implementing Green Button",
+    which names TXU Energy (a Vistra retail brand) alongside 35 other entities.
+    That is a voluntary 2012-era commitment list, not a rule, and it does not
+    compel anything. Texas ERCOT market rules place the smart-meter data
+    obligation on the transmission and distribution utilities (Oncor, CenterPoint
+    Energy, AEP Texas, TNMP) through the shared Smart Meter Texas platform, not
+    on retail electricity providers such as TXU Energy.
+
+  mandateStatus: live-claimed-unverified
+  mandateStatusVerbatim: >-
+    A commitment exists on paper; an implementation could not be verified.
+    energy.gov/data/green-button (HTTP 200, fetched 2026-07-27) names TXU Energy
+    under "Utilities Committed to Implementing Green Button". Third-party
+    secondary sources describe TXU Energy customers being able to sign in and
+    download usage data. But Vistra's and TXU Energy's own live pages do not
+    corroborate a Green Button surface: the TXU Energy usage-help pages that
+    would carry it — /help/manage-usage/my-energy-dashboard and
+    /help/manage-usage/smart-meters (both HTTP 200, fetched 2026-07-27) — make no
+    mention of Green Button, ESPI, data download, data export, or third-party
+    data sharing at all. The dashboard page instead states that "Current kWh
+    information in MyEnergy Dashboard is based on usage provided by the Smart
+    Meter Texas Portal. Current usage information will be approximately 48 hours
+    old." The full TXU Energy sitemap (https://www.txu.com/sitemap.xml, HTTP 200,
+    758 <loc> entries) contains no developer, API, Green Button, or data-export
+    page. Per the API Evangelist standard that a commitment list, a press
+    release, or a compliance page is not an implementation, this is recorded as
+    live-claimed-unverified rather than voluntary-adopted. No Green Button
+    Alliance certification for Vistra Corp or TXU Energy was found. No Connect My
+    Data (third-party, continuous, consent-driven) surface exists under any
+    Vistra domain.
+
+  dataStandard: >-
+    Green Button / ESPI (NAESB REQ.21) is claimed by association only, via the US
+    DOE commitment list naming TXU Energy. No version is published, no conformance
+    statement is published, and no ESPI/Atom endpoint was found. Effectively: no
+    standard reference found on any Vistra-controlled property. No CDR Consumer
+    Data Standards (not an Australian entity), no OCPP/OCPI, no OpenADR, no IEEE
+    2030.5, and no IEC CIM 61968/61970 references were found.
+
+  consumerDataApi: false
+  consumerDataVsMarketData:
+    consumerData:
+      apiAvailable: false
+      detail: >-
+        No third party can obtain an individual Vistra customer's usage or
+        billing data through a documented Vistra API. The only consumer-data
+        surface is the TXU Energy MyAccount web application at
+        https://services.txu.com/ (HTTP 200, ASP.NET session cookie behind an AWS
+        ALB), which renders the MyEnergy Dashboard to the account holder after
+        login. It is a customer web portal, not a developer API. Crucially, the
+        interval data it displays originates from Smart Meter Texas, the shared
+        ERCOT meter-data platform operated by the four Texas TDUs. Smart Meter
+        Texas — not Vistra — is where a third party registers to obtain a
+        customer's authorized interval data in Texas. Vistra as a REP is a
+        consumer of that platform, not a publisher.
+    marketData:
+      openPublished: false
+      detail: >-
+        Vistra publishes no open grid, market, dispatch, outage, or generation
+        data of its own. It is a price-taking/price-making participant in ERCOT,
+        PJM, ISO-NE, NYISO, MISO and CAISO; those ISOs/RTOs, plus the US Energy
+        Information Administration (EIA) and FERC, are the bodies that publish
+        open data ABOUT Vistra's fleet. Nothing anonymous and machine-readable is
+        served from vistracorp.com beyond the WordPress CMS surface noted below.
+    theSplit: >-
+      This is a rare double-closed case. Many energy organizations are wide open
+      on one axis and shut on the other — an ISO publishes market data and no
+      consumer data; a mandated retailer publishes consumer data and no market
+      data. Vistra publishes neither, because its position in the value chain
+      (merchant generator plus retailer, owning no wires and no meters, in a
+      country with no consumer energy data right) leaves it with no regulatory
+      obligation to publish and no commercial reason to. Both the consumer and
+      the market data about Vistra exist and are obtainable — just from third
+      parties (Smart Meter Texas, ERCOT, EIA), never from Vistra.
+
+  accessGate: customer-account-required
+  accessGateDetail: >-
+    There is no developer on-ramp of any kind. A developer cannot sign up, cannot
+    apply, and cannot request keys — there is no form, no portal, and no
+    published contact for API access. The only way to reach any Vistra energy
+    data is to become a retail customer of a Vistra brand and log in at
+    https://services.txu.com/ (or the equivalent brand portal) to view your own
+    account. To obtain a Texas customer's interval data programmatically, a
+    developer must instead register as a third party with Smart Meter Texas and
+    obtain that customer's authorization — a route that runs through the TDU-
+    operated platform and entirely bypasses Vistra.
+
+  authModel: >-
+    None published for developers. The customer portal at services.txu.com uses
+    username/password web session authentication (ASP.NET_SessionId cookie plus
+    AWS ALB stickiness cookies). No OAuth 2.0, no OpenID Connect, no API keys and
+    no mTLS are documented. Anonymous fetch of
+    https://www.txu.com/.well-known/openid-configuration returned HTTP 404 and
+    https://www.vistracorp.com/.well-known/openid-configuration returned HTTP 404
+    on 2026-07-27, so no OIDC discovery document is served on either property.
+
+findings:
+  summary: >-
+    Vistra Corp has no public API surface. Every developer-shaped subdomain on
+    the primary domain fails to resolve, every conventional discovery path 404s,
+    and the retail brand with the largest footprint (TXU Energy) has no developer
+    page anywhere in its 758-URL sitemap. The single machine-readable thing
+    served from vistracorp.com is the WordPress REST API that backs the marketing
+    site, which is explicitly disallowed in robots.txt and is CMS infrastructure
+    rather than a product API — it is therefore not listed in apis.yml. This is
+    the honest US-retailer shape: the standard exists (Green Button), the
+    commitment exists (DOE list), the mandate does not, and consequently neither
+    does the implementation.
+  homonymTrap: >-
+    IMPORTANT. Searching "Vistra API" surfaces devportal.vistra.com, titled "API
+    Developer Portal" (HTTP 200, 2026-07-27), plus help.vistra.com articles about
+    a "Vistra Incorporations API" and OAuth2 client-ID/secret credentials. That
+    belongs to Vistra Limited (vistra.com), an unrelated corporate-services, fund
+    administration and private-client firm. It is NOT Vistra Corp the Irving,
+    Texas power company (vistracorp.com, NYSE: VST). None of that developer
+    portal has been attributed to this profile.
+  githubNote: >-
+    api.github.com/orgs/vistracorp, /orgs/vistra-corp and /orgs/vistraenergy all
+    return 404. Two personal user accounts exist (VistraCorp, 0 public repos,
+    created 2022-01-14; vistraenergy, 1 public repo, created 2017-06-16), neither
+    carrying a name, company or blog field tying them to Vistra Corp. No GitHub
+    organization is recorded in apis.yml.
+
+probes:
+  - url: https://vistracorp.com
+    status: 200
+    note: Corporate site, WordPress.
+  - url: https://www.vistracorp.com
+    status: 200
+    note: Canonical corporate site.
+  - url: https://developer.vistracorp.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://developers.vistracorp.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://docs.vistracorp.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://api.vistracorp.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://data.vistracorp.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://www.vistracorp.com/developers
+    status: 404
+  - url: https://www.vistracorp.com/api
+    status: 404
+  - url: https://www.vistracorp.com/docs
+    status: 404
+  - url: https://www.vistracorp.com/data
+    status: 404
+  - url: https://www.vistracorp.com/openapi.json
+    status: 404
+  - url: https://www.vistracorp.com/swagger.json
+    status: 404
+  - url: https://www.vistracorp.com/.well-known/openid-configuration
+    status: 404
+    note: No OIDC discovery document served.
+  - url: https://www.vistracorp.com/robots.txt
+    status: 200
+    note: >-
+      Disallows /wp-json/ and /?rest_route=. Declares sitemap
+      https://vistracorp.com/sitemap_index.xml.
+  - url: https://www.vistracorp.com/wp-json/
+    status: 200
+    note: >-
+      WordPress core REST API backing the marketing site (namespaces oembed/1.0,
+      wpe/cache-plugin/v1, etc.). CMS infrastructure, disallowed in robots.txt,
+      not a product API. Deliberately NOT listed in apis.yml.
+  - url: https://vistracorp.com/sitemap_index.xml
+    status: 200
+    note: post/page/attachment/category sitemaps only. No developer or API section.
+  - url: https://vistracorp.com/feed/
+    status: 200
+    note: WordPress RSS 2.0 corporate news feed, channel title "Vistra Corp.".
+  - url: https://vistracorp.com/about/
+    status: 200
+    note: No mention of APIs, developer resources, or data access.
+  - url: https://vistracorp.com/retail/
+    status: 200
+    note: Lists six retail brands, 16 states plus DC. No API or data-sharing mention.
+  - url: https://investor.vistracorp.com
+    status: 200
+    note: Investor relations. No data API.
+  - url: https://investor.vistracorp.com/rss
+    status: 404
+  - url: https://hub.vistracorp.com
+    status: 200
+    note: Legislative hub microsite.
+  - url: https://www.txu.com
+    status: 200
+    note: >-
+      Largest retail brand. Returns 403 to a bare curl user agent; 200 with a
+      browser user agent.
+  - url: https://www.txu.com/robots.txt
+    status: 200
+    note: "User-agent: * / Allow: / . Declares https://www.txu.com/sitemap.xml"
+  - url: https://www.txu.com/sitemap.xml
+    status: 200
+    note: >-
+      758 <loc> entries. Grepped for api / develop / green / data / usage /
+      integrat — zero developer or API pages. Only consumer help pages.
+  - url: https://www.txu.com/developers
+    status: 404
+  - url: https://www.txu.com/api
+    status: 404
+  - url: https://www.txu.com/api-docs
+    status: 404
+  - url: https://www.txu.com/openapi.json
+    status: 404
+  - url: https://www.txu.com/swagger.json
+    status: 404
+  - url: https://www.txu.com/.well-known/
+    status: 404
+  - url: https://www.txu.com/.well-known/openid-configuration
+    status: 404
+  - url: https://developer.txu.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://api.txu.com/
+    status: 404
+    note: Host resolves to the same edge but serves no API at root.
+  - url: https://www.api.txu.com/
+    status: 000
+    note: >-
+      Appeared in a search result but DNS does not resolve. Not a real API host.
+  - url: https://services.txu.com/
+    status: 200
+    note: >-
+      TXU Energy customer web application (MyAccount). ASP.NET, AngularJS,
+      session cookies behind AWS ALB. Customer login, not an API.
+  - url: https://www.txu.com/help/manage-usage/my-energy-dashboard
+    status: 200
+    note: >-
+      States MyEnergy Dashboard kWh data comes from the Smart Meter Texas Portal
+      and is roughly 48 hours old. No Green Button, download, export, API or
+      third-party sharing mention.
+  - url: https://www.txu.com/help/manage-usage/smart-meters
+    status: 200
+    note: >-
+      Describes smart meter readings and notes demand readings are used by the
+      Transmission and Distribution Utility. No Smart Meter Texas link, no data
+      download, no API.
+  - url: https://www.ambitenergy.com
+    status: 200
+  - url: https://developer.ambitenergy.com
+    status: 200
+    note: >-
+      Wildcard DNS. Serves the ordinary Ambit Energy marketing homepage (title
+      "Welcome :: Ambit Energy"). NOT a developer portal.
+  - url: https://www.dynegy.com
+    status: 200
+  - url: https://developer.dynegy.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://www.dynegy.com/openapi.json
+    status: 404
+  - url: https://www.homefieldenergy.com
+    status: 200
+  - url: https://www.homefieldenergy.com/api
+    status: 200
+    note: Soft 404. Redirects to /homefield-page-not-found.
+  - url: https://www.trieagleenergy.com
+    status: 200
+  - url: https://www.energyharbor.com
+    status: 200
+  - url: https://www.vistraenergy.com
+    status: 200
+    note: Legacy domain, redirects to the current corporate site.
+  - url: https://www.energy.gov/data/green-button
+    status: 200
+    note: >-
+      US DOE Green Button page. Names TXU Energy in a 36-entity list headed
+      "Utilities Committed to Implementing Green Button". Does not distinguish
+      commitment from live implementation.
+  - url: https://smartmetertexas.com
+    status: 200
+    note: >-
+      Shared ERCOT meter-data platform operated by Oncor, CenterPoint Energy, AEP
+      Texas and TNMP. This is where third-party interval-data API registration
+      happens in Texas, not at Vistra. Recorded for context only; it is not a
+      Vistra property.
+  - url: https://api.smartmetertexas.com
+    status: 000
+    note: DNS does not resolve.
+  - url: https://devportal.vistra.com/
+    status: 200
+    note: >-
+      Homonym trap. "API Developer Portal" belonging to Vistra Limited
+      (corporate services / fund administration), an unrelated company. NOT
+      Vistra Corp.
+  - url: https://api.github.com/orgs/vistracorp
+    status: 404
+  - url: https://api.github.com/orgs/vistraenergy
+    status: 404
+
+specHarvest:
+  attempted: true
+  found: 0
+  paths:
+    - /openapi.json
+    - /swagger.json
+    - /api-docs
+    - /.well-known/
+    - /.well-known/openid-configuration
+  domainsProbed:
+    - vistracorp.com
+    - txu.com
+    - dynegy.com
+    - homefieldenergy.com
+    - ambitenergy.com
+  result: >-
+    No OpenAPI, Swagger, AsyncAPI, GraphQL schema, Postman collection or any
+    other machine-readable API contract was found on any Vistra-controlled
+    domain. The openapi/ directory is intentionally absent from this repository.
+
+sources:
+  - url: https://vistracorp.com/about/
+    type: About
+    note: Company profile, roughly 44,000 MW, 5 million customers, Irving, Texas, NYSE VST.
+  - url: https://vistracorp.com/retail/
+    type: Documentation
+    note: Six retail brands, 16 states plus DC.
+  - url: https://www.energy.gov/data/green-button
+    type: Standard
+    note: US DOE Green Button commitment list naming TXU Energy.
+  - url: https://www.txu.com/help/manage-usage/my-energy-dashboard
+    type: Documentation
+    note: Confirms Smart Meter Texas as the upstream source of TXU usage data.
+  - url: https://www.txu.com/sitemap.xml
+    type: Sitemap
+    note: 758 URLs, no developer or API pages.
+  - url: https://smartmetertexas.com
+    type: ThirdPartyDataPlatform
+    note: TDU-operated ERCOT meter-data platform where third-party data access lives.
+
+actions:
+  apisYmlCreated: true
+  apisListed: 0
+  openapiDirCreated: false
+  reason: >-
+    Identity-only company profile. Vistra Corp is a real, large, strategically
+    important US energy company with zero public API surface, so apis[] is
+    correctly empty and the value of this record is the negative finding plus the
+    structural explanation of why a US competitive retailer has nothing to
+    publish.
