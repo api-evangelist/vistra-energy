@@ -1,0 +1,107 @@
+generated: '2026-07-27'
+method: derived
+source: >-
+  review.yml probe log + live 2026-07-27 probes of vistracorp.com, txu.com,
+  services.txu.com and the five retail-brand domains
+scope: >-
+  Vistra Corp publishes no machine-readable API contract, so every API-facing
+  standard below is asserted false on evidence of absence rather than on a
+  negative conformance statement by the company. The energy-sector data
+  standards are listed because they are the ones a US competitive generator and
+  retail electricity provider would be expected to touch; recording them as not
+  found is the point of this artifact.
+standards:
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document found on any Vistra-controlled host.
+    /openapi.json and /swagger.json return 404 on vistracorp.com, txu.com,
+    dynegy.com, ambitenergy.com, homefieldenergy.com, trieagleenergy.com and
+    energyharbor.com; services.txu.com answers every path with the MyAccount
+    login HTML (soft 200).
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface published on any Vistra property.
+- id: graphql
+  conforms: false
+  evidence: No /graphql endpoint found on any Vistra host.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No OAuth 2.0 authorization server. /.well-known/oauth-authorization-server
+    returns 404 on vistracorp.com and txu.com. The only authentication surface is
+    ASP.NET session-cookie login at services.txu.com.
+- id: oidc
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration returns 404 on www.vistracorp.com and
+    www.txu.com and returns the login page (soft 200) on services.txu.com.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No API responses exist to carry application/problem+json.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    /.well-known/security.txt returns 404 on all ten Vistra hosts probed
+    2026-07-27.
+- id: rfc8414-oauth-metadata
+  conforms: false
+  evidence: No authorization-server metadata document served.
+- id: green-button-espi
+  conforms: false
+  claimed: association-only
+  evidence: >-
+    The US Department of Energy page energy.gov/data/green-button (HTTP 200)
+    names TXU Energy in a 36-entity list headed "Utilities Committed to
+    Implementing Green Button". That is a voluntary 2012-era commitment list, not
+    a conformance statement. No ESPI/Atom endpoint, no Green Button Download My
+    Data or Connect My Data surface, and no Green Button Alliance certification
+    were found under any Vistra domain, and the TXU Energy usage-help pages make
+    no mention of Green Button, ESPI, data download or third-party data sharing.
+- id: naesb-req21
+  conforms: false
+  evidence: >-
+    NAESB REQ.21 is the standard underlying Green Button/ESPI; no version,
+    profile or conformance statement is published by Vistra.
+- id: ieee-2030.5
+  conforms: false
+  evidence: No IEEE 2030.5 (SEP2) reference found on any Vistra property.
+- id: openadr
+  conforms: false
+  evidence: No OpenADR demand-response interface published.
+- id: ocpp
+  conforms: false
+  evidence: No OCPP charging-station protocol surface published.
+- id: ocpi
+  conforms: false
+  evidence: No OCPI e-mobility roaming interface published.
+- id: iec-cim-61968-61970
+  conforms: false
+  evidence: No IEC Common Information Model artifacts published.
+- id: consumer-data-right
+  conforms: false
+  evidence: >-
+    Not applicable. Vistra is a United States entity; the CDR energy sector rules
+    are Australian. The United States has no federal consumer energy data right.
+- id: dmarc
+  conforms: partial
+  evidence: >-
+    All seven Vistra registrable domains publish SPF; five publish DMARC and all
+    five are p=none (monitor only). See security/vistra-energy-domain-security.yml.
+- id: dnssec
+  conforms: false
+  evidence: DNSSEC is not enabled on any of the seven Vistra domains probed.
+- id: caa
+  conforms: false
+  evidence: No CAA records published on any of the seven Vistra domains probed.
+- id: hsts
+  conforms: partial
+  evidence: >-
+    Seven of ten hosts return Strict-Transport-Security; www.vistracorp.com,
+    www.txu.com and www.trieagleenergy.com do not.
+compliance_program_published: false
+compliance_note: >-
+  No Compliance pointer is emitted. Vistra publishes corporate-governance and
+  sustainability-reporting pages but no security or data-protection
+  certification program (no SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim was
+  found), and trust.vistracorp.com does not resolve.

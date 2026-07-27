@@ -1,0 +1,128 @@
+generated: '2026-07-27'
+method: probed
+source: live DNS/TLS/HTTP probes of every Vistra Corp controlled host in apis.yml
+note: >-
+  Vistra Corp publishes no API host, so every host probed here is a corporate,
+  retail-brand, investor or customer-portal web property. There are no API
+  servers to probe. Absence of a record (no CAA anywhere, no HSTS on
+  www.vistracorp.com or www.txu.com) is observed data, not a gap in the probe.
+hosts:
+- host: www.vistracorp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 21 17:18:14 2026 GMT
+  hsts: null
+- host: hub.vistracorp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 21 17:18:14 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: investor.vistracorp.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct  3 06:43:41 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.txu.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 24 14:59:50 2026 GMT
+  hsts: null
+- host: services.txu.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 24 14:59:50 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.dynegy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 13 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: www.ambitenergy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  8 23:08:27 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: www.homefieldenergy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 10 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: www.trieagleenergy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 21 23:09:01 2026 GMT
+  hsts: false
+- host: www.energyharbor.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 12 13:29:31 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+domains:
+- domain: vistracorp.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: txu.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: dynegy.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: ambitenergy.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: homefieldenergy.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
+- domain: trieagleenergy.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
+- domain: energyharbor.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+summary:
+  hosts_probed: 10
+  https_all: true
+  tls13_hosts: 8
+  tls12_hosts: 2
+  hsts_hosts: 7
+  hsts_absent_hosts:
+  - www.vistracorp.com
+  - www.txu.com
+  - www.trieagleenergy.com
+  domains_probed: 7
+  dnssec_domains: 0
+  caa_domains: 0
+  spf_domains: 7
+  dmarc_domains: 5
+  dmarc_enforcing_domains: 0
+  observation: >-
+    Every Vistra domain publishes SPF, none publishes CAA or enables DNSSEC, and
+    every DMARC record found is p=none (monitor only, no enforcement). The two
+    highest-traffic customer-facing hosts, www.vistracorp.com and www.txu.com,
+    return no Strict-Transport-Security header.

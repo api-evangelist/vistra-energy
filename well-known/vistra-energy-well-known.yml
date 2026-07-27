@@ -1,0 +1,159 @@
+generated: '2026-07-27'
+method: searched
+source: live probes of /.well-known/ and adjacent discovery paths on every Vistra Corp host
+found: 0
+note: >-
+  Zero well-known discovery documents are served on any Vistra Corp property. No
+  raw files accompany this index because nothing returned a real document, and no
+  `WellKnown`, `SecurityTxt` or `APICatalog` pointer is wired into apis.yml —
+  emitting one would assert a discovery surface that does not exist. Several
+  hosts answer unknown paths with a 200 HTML "page not found" body (soft 404) or,
+  in the case of the ASP.NET customer portal at services.txu.com, with the login
+  page for every path; those are recorded as soft_200 rather than hits.
+hosts:
+- host: https://www.vistracorp.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://www.txu.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://services.txu.com
+  note: >-
+    TXU Energy MyAccount (ASP.NET). Every unknown path returns HTTP 200 with the
+    MyAccount login HTML, so these are catch-all responses, not documents.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    soft_200: true
+    body: MyAccount login HTML, not an OIDC discovery document
+  - path: /openapi.json
+    status: 200
+    soft_200: true
+    body: MyAccount login HTML, not an OpenAPI document
+  - path: /swagger/v1/swagger.json
+    status: 200
+    soft_200: true
+    body: MyAccount login HTML, not a Swagger document
+- host: https://www.dynegy.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 200
+    soft_200: true
+    body: '<title>Page Not Found | Dynegy</title>'
+- host: https://www.ambitenergy.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://www.homefieldenergy.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 200
+    soft_200: true
+    body: '<title>Page Not Found  | Homefield</title>'
+- host: https://www.trieagleenergy.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://www.energyharbor.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://investor.vistracorp.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://hub.vistracorp.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+security_txt:
+  found: false
+  hosts_checked: 10
+vulnerability_disclosure:
+  found: false
+  note: >-
+    probe-security-programs.py returned vdp=none and trust=none on 2026-07-27.
+    /security, /responsible-disclosure and /vulnerability-disclosure on
+    vistracorp.com all 404, trust.vistracorp.com does not resolve, and the
+    51-page vistracorp.com page sitemap contains no security, trust or
+    disclosure page.
