@@ -1,6 +1,6 @@
 aid: vistra-energy
 url: https://raw.githubusercontent.com/api-evangelist/vistra-energy/refs/heads/main/apis.yml
-name: Vistra Corp
+name: Vistra
 kind: company
 description: >-
   Vistra Corp (NYSE: VST) is an Irving, Texas integrated retail electricity and
@@ -158,3 +158,4 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-legal-name: Vistra Corp
